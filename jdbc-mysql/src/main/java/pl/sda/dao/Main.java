@@ -11,8 +11,6 @@
 //        findAccountsCount
 //        W klasie Main przetestować każdą z metod.
 
-
-
 package pl.sda.dao;
 
 import java.sql.Date;
@@ -32,7 +30,11 @@ public class Main {
         System.out.println("findAllAfterCreationDate");
         accountJdbcDAO.finAllAfterCreationDate( Date.valueOf( "2012-03-10" ) );
         System.out.println("findAccountsCount");
-        accountJdbcDAO.findAccountsCount();
+     //   accountJdbcDAO.findAccountsCount();
+
+        System.out.println("AddAcount");
+        accountJdbcDAO.addAccount( 6,1563,"PL152569",Date.valueOf( "2011-03-11" ),Date.valueOf( "2019-03-11" ));
+
 
     }
 }
