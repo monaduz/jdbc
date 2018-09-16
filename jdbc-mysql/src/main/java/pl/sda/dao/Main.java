@@ -17,7 +17,7 @@ import java.sql.Date;
 import java.sql.SQLException;
 
 public class Main {
-    public static void main(String[] args) throws SQLException, ClassNotFoundException {
+    public static void main(String[] args) throws SQLException{
         AccountJdbcDAO accountJdbcDAO = new AccountJdbcDAO();
         System.out.println( "findAll" );
         accountJdbcDAO.findAll();
@@ -27,13 +27,14 @@ public class Main {
         accountJdbcDAO.findByNumber( "PL96934" );
         System.out.println( "findByCreationDate" );
         accountJdbcDAO.findByCreationDate( Date.valueOf( "2011-03-11" ) );
-        System.out.println("findAllAfterCreationDate");
+        System.out.println( "findAllAfterCreationDate" );
         accountJdbcDAO.finAllAfterCreationDate( Date.valueOf( "2012-03-10" ) );
-        System.out.println("findAccountsCount");
-     //   accountJdbcDAO.findAccountsCount();
+        System.out.println( "findAccountsCount" );
+        //   accountJdbcDAO.findAccountsCount();
 
-        System.out.println("AddAcount");
-        accountJdbcDAO.addAccount( 6,1563,"PL152569",Date.valueOf( "2011-03-11" ),Date.valueOf( "2019-03-11" ));
+        System.out.println( "AddAcount" );
+        accountJdbcDAO.addAccount( 6, 1563, "PL152569",
+                Date.valueOf( "2011-03-11" ), Date.valueOf( "2019-03-11" ) );
 
 
     }

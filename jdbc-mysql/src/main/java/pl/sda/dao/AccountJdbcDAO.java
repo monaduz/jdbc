@@ -29,7 +29,7 @@ public class AccountJdbcDAO {
         connection.close();
     }
 
-    void applyExecuteQuery (String query) throws SQLException{
+    void applyExecuteQuery(String query) throws SQLException {
         Connection connection = openConnection();
 
         Statement statement = connection.createStatement();
@@ -39,14 +39,15 @@ public class AccountJdbcDAO {
         while (resultSet.next()) {
             for (int i = 1; i <= rsmd.getColumnCount(); i++) {
                 if (i > 1) System.out.print( ",  " );
-                System.out.print( rsmd.getColumnName( i ) + ": " + resultSet.getString( i ) );
+                System.out.print( rsmd.getColumnName( i ) + ": "
+                        + resultSet.getString( i ) );
             }
             System.out.println( "" );
         }
         closeConnection( connection );
     }
 
-    void applyExecuteUpdate (String query) throws SQLException{
+    void applyExecuteUpdate(String query) throws SQLException {
         Connection connection = openConnection();
         Statement statement = connection.createStatement();
         statement.executeUpdate( query );
@@ -64,19 +65,22 @@ public class AccountJdbcDAO {
     }
 
     void findByNumber(String number) throws SQLException {
-        final String query = "select * from account where number='" + number + "'";
+        final String query = "select * from account where number='"
+                + number + "'";
         applyExecuteQuery( query );
     }
 
 
     void findByCreationDate(Date creationDate) throws SQLException {
-        final String query = "select * from account where creation_date='" + creationDate + "'";
+        final String query = "select * from account where creation_date='"
+                + creationDate + "'";
         applyExecuteQuery( query );
     }
 
 
     void finAllAfterCreationDate(Date creationDate) throws SQLException {
-        final String query = "select * from account where creation_date>'" + creationDate + "'";
+        final String query = "select * from account where creation_date>'"
+                + creationDate + "'";
         applyExecuteQuery( query );
     }
 
@@ -94,33 +98,38 @@ public class AccountJdbcDAO {
         closeConnection( connection );
     }
 
-    void addAccount (int id, int balance, String number, Date creationDate,Date closeDate) throws SQLException {
+    void addAccount(int id, int balance, String number,
+                    Date creationDate, Date closeDate) throws SQLException {
         final String query =
                 "insert into account values('"
-                        +id+"','"+balance+"','"+number+"','"+creationDate+"','"+closeDate+"')";
-    applyExecuteUpdate( query );
-    }
-
-    void deleteAccount(int id) throws SQLException {
-        final String query = "delete from account where account_id='"+id+"'";
+                        + id + "','" + balance + "','" + number + "','"
+                        + creationDate + "','" + closeDate + "')";
         applyExecuteUpdate( query );
     }
 
-    void updateBalance (int id, int balance) throws SQLException {
-        final String query = "update account set balance="+balance+" where account_id="+id;
+    void deleteAccount(int id) throws SQLException {
+        final String query = "delete from account where account_id='" + id + "'";
+        applyExecuteUpdate( query );
+    }
+
+    void updateBalance(int id, int balance) throws SQLException {
+        final String query = "update account set balance=" + balance
+                + " where account_id=" + id;
 
         applyExecuteUpdate( query );
     }
 
 
     void updateCreationDate(int id, Date date) throws SQLException {
-        final String query = "update account set creation_date='"+date+"' where account_id="+id;
+        final String query = "update account set creation_date='" + date
+                + "' where account_id=" + id;
 
         applyExecuteUpdate( query );
     }
 
     public void updateCloseDate(int id, Date date) throws SQLException {
-        final String query = "update account set close_date='"+date+"' where account_id="+id;
+        final String query = "update account set close_date='" + date
+                + "' where account_id=" + id;
 
         applyExecuteUpdate( query );
 
